@@ -1,40 +1,35 @@
-Welcome to the Product List App! 👋
-Hello and welcome! This application helps you manage a list of products with features like adding, deleting, and viewing product details. Follow the instructions below to set up and run the app on your local machine.
+# Product List App
 
-🚀 Getting Started
-Prerequisites
-Before you begin, make sure you have the following installed on your machine:
+Welcome! This app helps you manage a list of products. Follow these simple steps to run it locally.
 
-Node.js (v14 or higher)
-npm (Node Package Manager)
-🛠️ Setup Instructions
-Clone the Repository
+## Prerequisites
 
-bash
-Копіювати код
-git clone https://github.com/your-repo/product-list-app.git
-cd product-list-app
-Install Dependencies Install all the required packages by running:
+- **Node.js** (v14 or higher)
+- **npm**
 
-bash
-Копіювати код
+## How to Run
+
+1. Clone the repository and navigate to the project folder:
+   ```bash
+   git clone https://github.com/your-repo/product-list-app.git
+   cd product-list
+   ```
+2. Install dependencies:
+
+```bash
 npm install
-🏃‍♂️ How to Run the App
-Start the JSON Server Run the following command to start the local JSON server:
+```
 
-bash
-Копіювати код
+3. Start the JSON server:
+
+```bash
 npm run start:server
-This will run the server on http://localhost:3001.
+```
 
-Start the Development Server Open another terminal and run:
+4. Open another terminal and start the app:
 
-bash
-Копіювати код
+```bash
 npm run dev
-This will launch the app on http://localhost:5173 (or another available port).
+```
 
-View the App
-
-Open your browser and navigate to the development server URL (e.g., http://localhost:5173).
-Start managing your products!
+5. Open the app in your browser at http://localhost:5173.
