@@ -41,7 +41,7 @@ const ProductDetails: React.FC = () => {
       <p>Weight: {product.weight}</p>
       <h3>Comments</h3>
       <ul>
-        {product.comments.map((comment, index) => (
+        {product?.comments?.map((comment, index) => (
           <li key={index}>{comment}</li>
         ))}
       </ul>

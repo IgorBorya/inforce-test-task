@@ -1,15 +1,15 @@
 {
   "products": [
     {
-      "id": "828c",
-      "imageUrl": "https://via.placeholder.com/150",
-      "name": "Product A",
-      "count": 4,
+      "id": "c7e9",
+      "name": "ihor",
+      "imageUrl": "1",
+      "count": "-4",
       "size": {
-        "width": 200,
-        "height": 200
+        "width": 0,
+        "height": 0
       },
-      "weight": "200g"
+      "weight": "2"
     }
   ],
   "comments": []

@@ -1,123 +1,101 @@
-import React, { FC, FormEvent, useState } from "react";
-import styles from "./AddNewProductForm.module.css";
-
-interface Product {
-  id: number;
-  name: string;
-  weight: string;
-  imageUrl: string;
-  count: number;
-  size: {
-    width: number;
-    height: number;
-  };
-  comments: string[];
-}
+import React, { useState } from "react";
+import { Product } from "../../types/Product";
+import styles from "../AddNewProductForm/AddNewProductForm.module.css";
 
 interface AddNewProductFormProps {
-  onSubmit: (product: Product) => void;
-  formValues?: Partial<Product>;
+  onSubmit: (product: Omit<Product, "id">) => void;
 }
 
-const AddNewProductForm: FC<AddNewProductFormProps> = ({
-  onSubmit,
-  formValues,
-}) => {
-  const [newProduct, setNewProduct] = useState({
-    imageUrl: "https://via.placeholder.com/150",
-    name: "Product A",
-    count: 4,
-    size: {
-      width: 200,
-      height: 200,
-    },
-    weight: "200g",
+const AddNewProductForm: React.FC<AddNewProductFormProps> = ({ onSubmit }) => {
+  const [formData, setFormData] = useState<Omit<Product, "id">>({
+    name: "",
+    imageUrl: "",
+    count: 0,
+    size: { width: 0, height: 0 },
+    weight: "",
   });
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(newProduct);
+    onSubmit(formData);
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.formWrapper}>
-      {/* Inputs for product details */}
-      <label>
+    <form onSubmit={handleSubmit} className={styles.wrapper}>
+      <label className={styles.title}>
         Name:
         <input
           type="text"
-          value={newProduct.name}
-          onChange={(e) =>
-            setNewProduct({ ...newProduct, name: e.target.value })
-          }
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
           required
         />
       </label>
-      <label>
+      <label className={styles.title}>
         Image URL:
         <input
           type="text"
-          value={newProduct?.imageUrl ?? ""}
-          onChange={(e) =>
-            setNewProduct({ ...newProduct, imageUrl: e.target.value })
-          }
+          name="imageUrl"
+          value={formData.imageUrl}
+          onChange={handleChange}
           required
         />
       </label>
-      <label>
+      <label className={styles.title}>
         Count:
         <input
           type="number"
-          value={newProduct.count}
-          onChange={(e) =>
-            setNewProduct({
-              ...newProduct,
-              count: parseInt(e.target.value, 10),
-            })
-          }
+          name="count"
+          value={formData.count}
+          onChange={handleChange}
           required
         />
       </label>
-      <label>
+      <label className={styles.title}>
         Size (Width x Height):
         <input
           type="number"
-          placeholder="Width"
-          value={newProduct?.size?.width ?? 0}
+          name="width"
+          value={formData.size.width}
           onChange={(e) =>
-            setNewProduct({
-              ...newProduct,
-              size: { ...newProduct.size, width: parseInt(e.target.value) },
+            setFormData({
+              ...formData,
+              size: { ...formData.size, width: parseInt(e.target.value) },
             })
           }
           required
         />
         <input
           type="number"
-          placeholder="Height"
-          value={newProduct?.size?.height ?? 0}
+          name="height"
+          value={formData.size.height}
           onChange={(e) =>
-            setNewProduct({
-              ...newProduct,
-              size: { ...newProduct.size, height: parseInt(e.target.value) },
+            setFormData({
+              ...formData,
+              size: { ...formData.size, height: parseInt(e.target.value) },
             })
           }
           required
         />
       </label>
-      <label>
+      <label className={styles.title}>
         Weight:
         <input
           type="text"
-          value={newProduct.weight}
-          onChange={(e) =>
-            setNewProduct({ ...newProduct, weight: e.target.value })
-          }
+          name="weight"
+          value={formData.weight}
+          onChange={handleChange}
           required
         />
       </label>
-      <button className={styles.submitButton} onClick={onSubmit}>
-        Submit
+      <button type="submit" className={styles.btn}>
+        Add Product
       </button>
     </form>
   );

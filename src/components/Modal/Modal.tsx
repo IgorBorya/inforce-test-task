@@ -2,25 +2,25 @@ import React from "react";
 import styles from "./Modal.module.css";
 
 interface ModalProps {
-  isOpen: boolean; // Controls whether the modal is visible
-  onClose: () => void; // Function to close the modal
-  children: React.ReactNode; // Content to display inside the modal
+  isOpen: boolean;
+  onClose: () => void;
   title: string;
+  children: React.ReactNode;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title }) => {
-  if (!isOpen) return null; // If modal is not open, render nothing
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
+  if (!isOpen) return null;
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.modal}>
-        <button className={styles.closeButton} onClick={onClose}>
-          &times;
-        </button>
-        <div style={{ display: "flex", flexDirection: "column" }}>
+    <div className={styles.overlay} onClick={onClose}>
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+        <div className={styles.header}>
           <h2>{title}</h2>
-          {children}
+          <button className={styles.closeButton} onClick={onClose}>
+            X
+          </button>
         </div>
+        {children}
       </div>
     </div>
   );
