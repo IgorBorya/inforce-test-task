@@ -1,0 +1,8 @@
+.productDetails {
+  padding: 20px;
+}
+
+.productDetails img {
+  max-width: 200px;
+  margin-bottom: 20px;
+}

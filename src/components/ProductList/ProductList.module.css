@@ -18,6 +18,18 @@
   border-radius: 5px;
 }
 
+.primaryButton {
+  background-color: #624dff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.primaryButton:hover {
+  background-color: #4027fe;
+}
 .deleteButton {
   background-color: #ff4d4f;
   color: #fff;

@@ -1,11 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../store/store";
-import { setProducts, deleteProduct } from "../../store/productSlice";
+import {
+  setProducts,
+  deleteProduct,
+  addProduct,
+} from "../../store/productSlice";
 import axios from "axios";
 import styles from "./ProductList.module.css";
+import Modal from "../Modal/modal";
+import AddNewProductForm from "../AddNewProductForm/AddNewProductForm";
+import { useNavigate } from "react-router-dom";
 
 const ProductList: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [newProduct, setNewProduct] = useState();
+
+  const navigate = useNavigate();
+
+  const toggleModalOpen = () => setIsModalOpen(!isModalOpen);
+
   const dispatch = useDispatch<AppDispatch>();
   const products = useSelector((state: RootState) => state.products.products);
 
@@ -15,6 +30,16 @@ const ProductList: React.FC = () => {
       dispatch(setProducts(response.data));
     });
   }, [dispatch]);
+
+  const navigateToDetails = (id: number) => navigate(`products/${id}`);
+
+  const createProduct = (product) => {
+    axios.post(`http://localhost:3001/products`, product).then((response) => {
+      console.log(response.data);
+      dispatch(addProduct(response.data));
+      toggleModalOpen();
+    });
+  };
 
   const handleDelete = (id: number) => {
     // Видалення продукту
@@ -26,9 +51,19 @@ const ProductList: React.FC = () => {
   return (
     <div className={styles.productList}>
       <h2>Products List</h2>
+      <button
+        className={styles.primaryButton}
+        onClick={() => toggleModalOpen()}
+      >
+        Add
+      </button>
       <ul>
         {products.map((product) => (
-          <li key={product.id} className={styles.productItem}>
+          <li
+            key={product.id}
+            className={styles.productItem}
+            onClick={() => navigateToDetails(product.id)}
+          >
             <img
               src={product.imageUrl}
               alt={product.name}
@@ -41,13 +76,23 @@ const ProductList: React.FC = () => {
             </div>
             <button
               className={styles.deleteButton}
-              onClick={() => handleDelete(product.id)}
+              onClick={(e) => {
+                e.preventDefault();
+                handleDelete(product.id);
+              }}
             >
               Delete
             </button>
           </li>
         ))}
       </ul>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={toggleModalOpen}
+        title="Add New Product"
+      >
+        <AddNewProductForm onSubmit={createProduct} />
+      </Modal>
     </div>
   );
 };
