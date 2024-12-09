@@ -1,50 +1,40 @@
-# React + TypeScript + Vite
+Welcome to the Product List App! 👋
+Hello and welcome! This application helps you manage a list of products with features like adding, deleting, and viewing product details. Follow the instructions below to set up and run the app on your local machine.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 Getting Started
+Prerequisites
+Before you begin, make sure you have the following installed on your machine:
 
-Currently, two official plugins are available:
+Node.js (v14 or higher)
+npm (Node Package Manager)
+🛠️ Setup Instructions
+Clone the Repository
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+bash
+Копіювати код
+git clone https://github.com/your-repo/product-list-app.git
+cd product-list-app
+Install Dependencies Install all the required packages by running:
 
-## Expanding the ESLint configuration
+bash
+Копіювати код
+npm install
+🏃‍♂️ How to Run the App
+Start the JSON Server Run the following command to start the local JSON server:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+bash
+Копіювати код
+npm run start:server
+This will run the server on http://localhost:3001.
 
-- Configure the top-level `parserOptions` property like this:
+Start the Development Server Open another terminal and run:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+bash
+Копіювати код
+npm run dev
+This will launch the app on http://localhost:5173 (or another available port).
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+View the App
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Open your browser and navigate to the development server URL (e.g., http://localhost:5173).
+Start managing your products!
