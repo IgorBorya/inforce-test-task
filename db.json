@@ -1,4 +1,42 @@
 {
-  "products": [],
+  "products": [
+    {
+      "id": 1,
+      "imageUrl": "https://via.placeholder.com/150",
+      "name": "Product A",
+      "count": 4,
+      "size": {
+        "width": 200,
+        "height": 200
+      },
+      "weight": "200g",
+      "comments": [
+        {
+          "id": 1,
+          "productId": 1,
+          "description": "Great product!",
+          "date": "14:00 01.12.2024"
+        },
+        {
+          "id": 2,
+          "productId": 1,
+          "description": "Needs improvement.",
+          "date": "16:00 02.12.2024"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "imageUrl": "https://via.placeholder.com/150",
+      "name": "Product B",
+      "count": 2,
+      "size": {
+        "width": 150,
+        "height": 150
+      },
+      "weight": "500g",
+      "comments": []
+    }
+  ],
   "comments": []
 }
